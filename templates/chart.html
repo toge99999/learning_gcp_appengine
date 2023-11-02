@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>課題</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+  </head>
+  <body>
+    <canvas id="chart"></canvas>
+
+    <script>
+    window.chartColors = {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)',
+        blue: 'rgb(54, 162, 235)',
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(201, 203, 207)'
+    };
+
+    var chartDatas = {
+        type: 'bar',
+        data: {
+            labels: [
+                {% for label in labels %}
+                    "{{label}}",
+                {% endfor %}
+            ],
+            datasets: [{
+                label: '輸入出とサービス事業の国際支出',
+                type: 'bar',
+                backgroundColor: window.chartColors.red,
+                borderColor: window.chartColors.red,
+                yAxisID: 'yaxis1',
+                data: [
+                    {% for data in datas[0] %}
+                        {{data}},
+                    {% endfor %}
+                ],
+                fill: false,
+            }, {
+                label: '貿易支出トータル',
+                type: 'bar',
+                fill: false,
+                backgroundColor: window.chartColors.green,
+                borderColor: window.chartColors.green,
+                yAxisID: 'yaxis1',
+                data: [
+                    {% for data in datas[1] %}
+                        {{data}},
+                    {% endfor %}
+                ],
+            }, {
+                label: '輸出',
+                type: 'line',
+                fill: false,
+                backgroundColor: window.chartColors.orange,
+                borderColor: window.chartColors.orange,
+                yAxisID: 'yaxis1',
+                data: [
+                    {% for data in datas[2] %}
+                        {{data}},
+                    {% endfor %}
+                ],
+            }, {
+                label: '輸入',
+                type: 'line',
+                fill: false,
+                backgroundColor: window.chartColors.grey,
+                borderColor: window.chartColors.grey,
+                yAxisID: 'yaxis1',
+                data: [
+                    {% for data in datas[3] %}
+                        {{data}},
+                    {% endfor %}
+                ],
+            },  {
+                label: 'サービス事業',
+                type: 'line',
+                fill: false,
+                backgroundColor: window.chartColors.purple,
+                borderColor: window.chartColors.purple,
+                yAxisID: 'yaxis1',
+                data: [
+                    {% for data in datas[4] %}
+                        {{data}},
+                    {% endfor %}
+                ],
+            }]
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: '日本の感染状況'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                x: {
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: '日付'
+                    }
+                },
+                yaxis1 : {
+                    display: true,
+                    position: 'left',
+                    scaleLabel: {
+                        display: true,
+                        labelString: '￥'
+                    }
+                },
+                yaxis2 : {
+                    display: true,
+                    position: 'right',
+                    scaleLabel: {
+                        display: true,
+                        labelString: '￥'
+                    }
+                }
+            }
+        }
+    };
+    var mychart = document.getElementById("chart");
+    var chart = new Chart(mychart, chartDatas);
+    </script>
+  </body>
+</html>
