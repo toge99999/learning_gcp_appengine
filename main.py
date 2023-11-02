@@ -7,7 +7,7 @@ from google.cloud import bigquery
 from google.oauth2 import service_account
 
 
-#key_path = "..\\ssh\\learning-gcp-403802-fa083b3f5b83.json"
+#key_path = "..\\ssh\\credencial-key.json"
 #credentials = service_account.Credentials.from_service_account_file(
 #    key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"],
 #)
@@ -26,7 +26,7 @@ def diplay():
         SELECT
             *
         FROM 
-            `learning-gcp-403802.Finance_data.balance_of_payments`
+            `your-database-name`
         ORDER BY 
             day
         """
