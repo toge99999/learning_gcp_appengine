@@ -8,10 +8,10 @@ from google.oauth2 import service_account
 
 
 key_path = "..\\ssh\\gcp-cloud-study-session1113-335cab1d09ff.json"
-#credentials = service_account.Credentials.from_service_account_file(
-#    key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"],
-#)
-#bigquery_client = bigquery.Client(credentials=credentials, project=credentials.project_id,)
+credentials = service_account.Credentials.from_service_account_file(
+    key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"],
+)
+bigquery_client = bigquery.Client(credentials=credentials, project=credentials.project_id,)
 
 #bigquery_client = bigquery.Client()
 app = Flask(__name__)
