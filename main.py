@@ -7,7 +7,7 @@ from google.cloud import bigquery
 from google.oauth2 import service_account
 
 
-key_path = "..\\ssh\\gcp-cloud-study-session1113-335cab1d09ff.json"
+key_path = "..\\.ssh\\gcp-cloud-study-session1113-335cab1d09ff.json"
 credentials = service_account.Credentials.from_service_account_file(
     key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"],
 )
@@ -26,7 +26,7 @@ def diplay():
         SELECT
             *
         FROM 
-            `gcp_cloud_study_session1113db`
+            `gcp-cloud-study-session1113.gcp_cloud_study_session1114db.test_table`
         ORDER BY 
             day
         """
@@ -39,7 +39,7 @@ def diplay():
     # print(df.fillna(0))
     # df = df.fillna(0)
     
-    labels = df["day"]
+    labels = df["Day"] #小文字deyはエラー出る
     datas = [df["Goods_and_services"], df["Goods_total"], df["Exports"], df["Imports"], df["Services"]]
     
     return render_template('chart.html', datas=datas, labels=labels)
